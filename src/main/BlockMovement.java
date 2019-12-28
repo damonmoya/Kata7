@@ -61,7 +61,7 @@ public class BlockMovement {
             @Override
             public Block moveDown() {
                 int localPosY = posY;
-                if (posY > 450) localPosY = posY - 50;
+                if (posY < 450) localPosY = posY + 50;
                 setPosY(localPosY);
                 return BlockAt(posX, localPosY);
             }
