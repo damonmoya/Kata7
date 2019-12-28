@@ -8,8 +8,8 @@ public class BlockMovement {
     private int posY;
     
     public BlockMovement(){
-        this.posX = 250;
-        this.posY = 200;
+        this.posX = 300;
+        this.posY = 300;
     }
     
     public Block origin() {
@@ -37,7 +37,7 @@ public class BlockMovement {
             @Override
             public Block moveRight() {
                 int localPosX = posX;
-                if (posX < 450) localPosX = posX + 50;
+                if (posX < 600) localPosX = posX + 100;
                 setPosX(localPosX);
                 return BlockAt(localPosX, posY);
             }
@@ -45,7 +45,7 @@ public class BlockMovement {
             @Override
             public Block moveLeft() {
                 int localPosX = posX;
-                if (posX > 0) localPosX = posX - 50;
+                if (posX > 0) localPosX = posX - 100;
                 setPosX(localPosX);
                 return BlockAt(localPosX, posY);
             }
@@ -53,7 +53,7 @@ public class BlockMovement {
             @Override
             public Block moveUp() {
                 int localPosY = posY;
-                if (posY > 0) localPosY = posY - 50;
+                if (posY > 0) localPosY = posY - 100;
                 setPosY(localPosY);
                 return BlockAt(posX, localPosY);
             }
@@ -61,16 +61,16 @@ public class BlockMovement {
             @Override
             public Block moveDown() {
                 int localPosY = posY;
-                if (posY < 450) localPosY = posY + 50;
+                if (posY < 600) localPosY = posY + 100;
                 setPosY(localPosY);
                 return BlockAt(posX, localPosY);
             }
             
             @Override
             public Block resetPosition() {
-                setPosX(250);
-                setPosY(200);
-                return BlockAt(250, 200);
+                setPosX(300);
+                setPosY(300);
+                return BlockAt(300, 300);
             }
             
             @Override

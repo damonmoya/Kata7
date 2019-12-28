@@ -15,6 +15,9 @@ public class Main extends JFrame {
     private BlockPanel applicationDisplayBlock;
     
     public static void main(String[] args) {
+        try { 
+            UIManager.setLookAndFeel("com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel"); 
+        } catch(Exception ignored){}
         new Main().setVisible(true);
     }
 
@@ -34,8 +37,9 @@ public class Main extends JFrame {
     private void deployUI() {
         this.setTitle("Block Shifter");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setMinimumSize(new Dimension(575,680));
+        this.setMinimumSize(new Dimension(730,825));
         this.setLocationRelativeTo(null);
+        this.setResizable(false);
         this.getContentPane().add(blockPanel());
         this.add(resetBar(),BorderLayout.NORTH);
         this.add(toolBar(),BorderLayout.SOUTH);
