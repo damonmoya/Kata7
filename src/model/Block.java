@@ -3,5 +3,8 @@ package model;
 public interface Block {
     Block moveRight();
     Block moveLeft();
-    int blockPos();
+    Block moveUp();
+    Block moveDown();
+    int blockPosX();
+    int blockPosY();
 }

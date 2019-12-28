@@ -4,51 +4,80 @@ import model.Block;
 
 public class BlockMovement {
     
-    private int pos;
+    private int posX;
+    private int posY;
     
     public BlockMovement(){
-        this.pos = 250;
+        this.posX = 250;
+        this.posY = 200;
     }
     
     public Block origin() {
-        return BlockAt(this.pos);
+        return BlockAt(this.posX, this.posY);
     }
     
-    public int getPos(){
-        return this.pos;
+    public int getPosX(){
+        return this.posX;
     }
     
-    public void setPos(int pos){
-        this.pos = pos;
+    public int getPosY(){
+        return this.posY;
     }
     
-    private Block BlockAt(int pos) {
+    public void setPosX(int pos){
+        this.posX = pos;
+    }
+    
+    public void setPosY(int pos){
+        this.posY = pos;
+    }
+    
+    private Block BlockAt(int posX, int posY) {
         return new Block() {
             @Override
             public Block moveRight() {
-                int localPos = pos;
-                if (pos < 450) localPos = pos + 50;
-                setPos(localPos);
-                return BlockAt(localPos);
+                int localPosX = posX;
+                if (posX < 450) localPosX = posX + 50;
+                setPosX(localPosX);
+                return BlockAt(localPosX, posY);
             }
 
             @Override
             public Block moveLeft() {
-                int localPos = pos;
-                if (pos > 0) localPos = pos - 50;
-                setPos(localPos);
-                return BlockAt(localPos);
+                int localPosX = posX;
+                if (posX > 0) localPosX = posX - 50;
+                setPosX(localPosX);
+                return BlockAt(localPosX, posY);
             }
             
             @Override
-            public int blockPos() {
-                return getPos();
+            public Block moveUp() {
+                int localPosY = posY;
+                if (posY > 0) localPosY = posY - 50;
+                setPosY(localPosY);
+                return BlockAt(posX, localPosY);
+            }
+            
+            @Override
+            public Block moveDown() {
+                int localPosY = posY;
+                if (posY > 450) localPosY = posY - 50;
+                setPosY(localPosY);
+                return BlockAt(posX, localPosY);
+            }
+            
+            @Override
+            public int blockPosX() {
+                return getPosX();
+            }
+            
+            @Override
+            public int blockPosY() {
+                return getPosY();
             }
 
         };
     }
     
 }
-
-
-    
+  

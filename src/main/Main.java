@@ -1,15 +1,8 @@
 package main;
 
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 
-import control.Command;
-import control.MoveLeftCommand;
-import control.MoveRightCommand;
+import control.*;
 import model.Block;
 import javax.swing.*;
 import javax.swing.event.MouseInputAdapter;
@@ -36,12 +29,14 @@ public class Main extends JFrame {
     private void addCommands() {
         commands.put("Right",new MoveRightCommand(applicationDisplayBlock));
         commands.put("Left",new MoveLeftCommand(applicationDisplayBlock));
+        commands.put("Up",new MoveUpCommand(applicationDisplayBlock));
+        commands.put("Down",new MoveDownCommand(applicationDisplayBlock));
     }
 
     private void deployUI() {
         this.setTitle("Block Shifter");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setMinimumSize(new Dimension(500,500));
+        this.setMinimumSize(new Dimension(575,640));
         this.setLocationRelativeTo(null);
         this.getContentPane().add(blockPanel());
         this.add(toolBar(),BorderLayout.SOUTH);
@@ -55,11 +50,7 @@ public class Main extends JFrame {
                 xMousePosition = e.getX();
             }
 
-            @Override
-            public void mouseReleased(MouseEvent e) {
-                if((xMousePosition - e.getX()) >= 0 ) commands.get("Right").execute();
-                else commands.get("Left").execute();
-            }
+            
         });
         applicationDisplayBlock = panel;
         return panel;
@@ -72,21 +63,35 @@ public class Main extends JFrame {
     private JMenuBar toolBar() {
         JMenuBar menuBar = new JMenuBar();
         menuBar.setLayout(new FlowLayout(FlowLayout.CENTER));
-        menuBar.add(prevButton());
-        menuBar.add(nextButton());
+        menuBar.add(leftButton());
+        menuBar.add(rightButton());
+        menuBar.add(upButton());
+        menuBar.add(downButton());
         return menuBar;
     }
 
-    private JButton nextButton() {
-        JButton nextButton = new JButton(">");
-        nextButton.addActionListener(e -> commands.get("Right").execute());
-        return nextButton;
+    private JButton rightButton() {
+        JButton rightButton = new JButton(">");
+        rightButton.addActionListener(e -> commands.get("Right").execute());
+        return rightButton;
     }
 
-    private JButton prevButton() {
-        JButton prevButton = new JButton("<");
-        prevButton.addActionListener(e -> commands.get("Left").execute());
-        return prevButton;
+    private JButton leftButton() {
+        JButton leftButton = new JButton("<");
+        leftButton.addActionListener(e -> commands.get("Left").execute());
+        return leftButton;
+    }
+    
+    private JButton upButton() {
+        JButton upButton = new JButton("Up");
+        upButton.addActionListener(e -> commands.get("Up").execute());
+        return upButton;
+    }
+    
+    private JButton downButton() {
+        JButton downButton = new JButton("Down");
+        downButton.addActionListener(e -> commands.get("Down").execute());
+        return downButton;
     }
     
 }

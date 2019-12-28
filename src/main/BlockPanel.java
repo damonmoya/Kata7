@@ -4,13 +4,7 @@ import model.Block;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Graphics2D;
-
-import javax.swing.JFrame;
 import javax.swing.JPanel;
-
-import javax.swing.*;
-import java.awt.*;
 
 public class BlockPanel extends JPanel implements view.BlockDisplay{
 
@@ -28,7 +22,7 @@ public class BlockPanel extends JPanel implements view.BlockDisplay{
         for ( int y = 0; y <= 500; y += 50 ) 
         g.drawRect( x, y, 50, 50 );
         g.setColor(new Color(255, 0, 0));
-        g.fillRect(block.blockPos(), 200, 100, 100);
+        g.fillRect(block.blockPosX(), block.blockPosY(), 100, 100);
     }
 
     @Override
