@@ -28,7 +28,7 @@ public class BlockPanel extends JPanel implements view.BlockDisplay{
         for ( int y = 0; y <= 500; y += 50 ) 
         g.drawRect( x, y, 50, 50 );
         g.setColor(new Color(255, 0, 0));
-        g.fillRect(block.blockPos(), 200, 90, 90);
+        g.fillRect(block.blockPos(), 200, 100, 100);
     }
 
     @Override

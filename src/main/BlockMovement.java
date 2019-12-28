@@ -7,7 +7,7 @@ public class BlockMovement {
     private int pos;
     
     public BlockMovement(){
-        this.pos = 200;
+        this.pos = 250;
     }
     
     public Block origin() {
@@ -27,7 +27,7 @@ public class BlockMovement {
             @Override
             public Block moveRight() {
                 int localPos = pos;
-                if (pos < 500) localPos = pos + 50;
+                if (pos < 450) localPos = pos + 50;
                 setPos(localPos);
                 return BlockAt(localPos);
             }
