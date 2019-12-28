@@ -21,7 +21,7 @@ import java.util.Map;
 public class Main extends JFrame {
 
     private Map<String, Command> commands = new HashMap<>();
-    private BlockPanel applicationShowBlock;
+    private BlockPanel applicationDisplayBlock;
     private int xMousePosition;
     
     public static void main(String[] args) {
@@ -34,8 +34,8 @@ public class Main extends JFrame {
     }
 
     private void addCommands() {
-        commands.put("Right",new MoveRightCommand(applicationShowBlock));
-        commands.put("Prev",new MoveLeftCommand(applicationShowBlock));
+        commands.put("Right",new MoveRightCommand(applicationDisplayBlock));
+        commands.put("Prev",new MoveLeftCommand(applicationDisplayBlock));
     }
 
     private void deployUI() {
@@ -43,11 +43,11 @@ public class Main extends JFrame {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setMinimumSize(new Dimension(500,500));
         this.setLocationRelativeTo(null);
-        this.getContentPane().add(ShowBlock());
+        this.getContentPane().add(blockPanel());
         this.add(toolBar(),BorderLayout.SOUTH);
     }
 
-    private BlockPanel showBlock() {
+    private BlockPanel blockPanel() {
         BlockPanel panel = new BlockPanel(block());
         panel.addMouseListener(new MouseInputAdapter() {
             @Override
@@ -61,12 +61,12 @@ public class Main extends JFrame {
                 else commands.get("Prev").execute();
             }
         });
-        applicationDisplayPanel = panel;
+        applicationDisplayBlock = panel;
         return panel;
     }
 
     private Block block() {
-        return new FileImageReader("C:\\Users\\Asus\\Pictures").read();
+        return new BlockMovement().origin();
     }
 
     private JMenuBar toolBar() {
