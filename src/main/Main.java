@@ -35,11 +35,11 @@ public class Main extends JFrame {
 
     private void addCommands() {
         commands.put("Right",new MoveRightCommand(applicationDisplayBlock));
-        commands.put("Prev",new MoveLeftCommand(applicationDisplayBlock));
+        commands.put("Left",new MoveLeftCommand(applicationDisplayBlock));
     }
 
     private void deployUI() {
-        this.setTitle("Image Viewer");
+        this.setTitle("Block Shifter");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setMinimumSize(new Dimension(500,500));
         this.setLocationRelativeTo(null);
@@ -57,8 +57,8 @@ public class Main extends JFrame {
 
             @Override
             public void mouseReleased(MouseEvent e) {
-                if((xMousePosition - e.getX()) >= 0 ) commands.get("Next").execute();
-                else commands.get("Prev").execute();
+                if((xMousePosition - e.getX()) >= 0 ) commands.get("Right").execute();
+                else commands.get("Left").execute();
             }
         });
         applicationDisplayBlock = panel;
