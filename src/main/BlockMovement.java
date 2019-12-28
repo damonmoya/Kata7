@@ -11,19 +11,25 @@ public class BlockMovement {
     }
     
     public Block origin() {
-        return BlockAt(200);
+        return BlockAt(this.pos);
     }
     
     private Block BlockAt(int pos) {
         return new Block() {
             @Override
             public Block moveRight() {
-                return BlockAt(pos < 500 ? pos+50 : pos);
+                int localPos = pos;
+                if (pos < 500) localPos = pos + 50;
+                setPos(localPos);
+                return BlockAt(localPos);
             }
 
             @Override
             public Block moveLeft() {
-                return BlockAt(pos > 0 ? pos-50 : pos);
+                int localPos = pos;
+                if (pos > 0) localPos = pos - 50;
+                setPos(localPos);
+                return BlockAt(localPos);
             }
 
         };

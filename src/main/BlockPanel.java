@@ -16,16 +16,22 @@ public class BlockPanel extends JPanel implements view.BlockDisplay{
 
     private Block block;
     private Graphics g;
+    private int pos;
     
-    public BlockPanel (Block block){
+    public BlockPanel (Block block, int pos){
         this.block = block;
+        this.pos = pos;
+    }
+    
+    public void setPos(int pos){
+        this.pos = pos;
     }
     
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         g.setColor(new Color(255, 0, 0));
-        g.fillRect(200, 200, 90, 90);
+        g.fillRect(this.pos, 200, 90, 90);
     }
 
     @Override
