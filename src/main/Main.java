@@ -5,9 +5,7 @@ import javax.swing.JFrame;
 import control.*;
 import model.Block;
 import javax.swing.*;
-import javax.swing.event.MouseInputAdapter;
 import java.awt.*;
-import java.awt.event.MouseEvent;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -15,7 +13,6 @@ public class Main extends JFrame {
 
     private Map<String, Command> commands = new HashMap<>();
     private BlockPanel applicationDisplayBlock;
-    private int xMousePosition;
     
     public static void main(String[] args) {
         new Main().setVisible(true);
@@ -31,27 +28,21 @@ public class Main extends JFrame {
         commands.put("Left",new MoveLeftCommand(applicationDisplayBlock));
         commands.put("Up",new MoveUpCommand(applicationDisplayBlock));
         commands.put("Down",new MoveDownCommand(applicationDisplayBlock));
+        commands.put("Reset",new ResetPositionCommand(applicationDisplayBlock));
     }
 
     private void deployUI() {
         this.setTitle("Block Shifter");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setMinimumSize(new Dimension(575,640));
+        this.setMinimumSize(new Dimension(575,680));
         this.setLocationRelativeTo(null);
         this.getContentPane().add(blockPanel());
+        this.add(resetBar(),BorderLayout.NORTH);
         this.add(toolBar(),BorderLayout.SOUTH);
     }
 
     private BlockPanel blockPanel() {
         BlockPanel panel = new BlockPanel(block());
-        panel.addMouseListener(new MouseInputAdapter() {
-            @Override
-            public void mousePressed(MouseEvent e) {
-                xMousePosition = e.getX();
-            }
-
-            
-        });
         applicationDisplayBlock = panel;
         return panel;
     }
@@ -60,6 +51,13 @@ public class Main extends JFrame {
         return new BlockMovement().origin();
     }
 
+    private JMenuBar resetBar() {
+        JMenuBar menuBar = new JMenuBar();
+        menuBar.setLayout(new FlowLayout(FlowLayout.CENTER));
+        menuBar.add(resetButton());
+        return menuBar;
+    }
+    
     private JMenuBar toolBar() {
         JMenuBar menuBar = new JMenuBar();
         menuBar.setLayout(new FlowLayout(FlowLayout.CENTER));
@@ -92,6 +90,12 @@ public class Main extends JFrame {
         JButton downButton = new JButton("Down");
         downButton.addActionListener(e -> commands.get("Down").execute());
         return downButton;
+    }
+    
+    private JButton resetButton() {
+        JButton resetButton = new JButton("Reset");
+        resetButton.addActionListener(e -> commands.get("Reset").execute());
+        return resetButton;
     }
     
 }

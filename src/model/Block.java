@@ -5,6 +5,7 @@ public interface Block {
     Block moveLeft();
     Block moveUp();
     Block moveDown();
+    Block resetPosition();
     int blockPosX();
     int blockPosY();
 }

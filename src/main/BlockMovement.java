@@ -67,6 +67,13 @@ public class BlockMovement {
             }
             
             @Override
+            public Block resetPosition() {
+                setPosX(250);
+                setPosY(200);
+                return BlockAt(250, 200);
+            }
+            
+            @Override
             public int blockPosX() {
                 return getPosX();
             }
