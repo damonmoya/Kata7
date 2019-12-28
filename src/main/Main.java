@@ -48,7 +48,7 @@ public class Main extends JFrame {
     }
 
     private BlockPanel blockPanel() {
-        BlockPanel panel = new BlockPanel(block(), 200);
+        BlockPanel panel = new BlockPanel(block());
         panel.addMouseListener(new MouseInputAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {

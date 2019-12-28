@@ -14,6 +14,14 @@ public class BlockMovement {
         return BlockAt(this.pos);
     }
     
+    public int getPos(){
+        return this.pos;
+    }
+    
+    public void setPos(int pos){
+        this.pos = pos;
+    }
+    
     private Block BlockAt(int pos) {
         return new Block() {
             @Override
@@ -30,6 +38,11 @@ public class BlockMovement {
                 if (pos > 0) localPos = pos - 50;
                 setPos(localPos);
                 return BlockAt(localPos);
+            }
+            
+            @Override
+            public int blockPos() {
+                return getPos();
             }
 
         };
